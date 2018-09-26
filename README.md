@@ -2,18 +2,18 @@
 
 Quick and dirty client for YSHI file upload service
 
-## Prerequisites
-
-### Linux/WSL
-
-```
-sudo apt-get install xorg-dev
-```
-
 ## Build
 
 ```
 cargo build --release
+```
+
+### Prerequisites
+
+#### Linux/WSL
+
+```
+sudo apt-get install xorg-dev
 ```
 
 ## Use

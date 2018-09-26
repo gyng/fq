@@ -10,7 +10,7 @@ const USAGE: &'static str = "
 fq -- yasashii file uploader client.
 
 Usage:
-  fq (a | u | add | upload) [--config=<cfg>] [-nc | --nocopy] <file>...
+  fq (a | u | add | upload) [--config=<cfg>] [-n | --nocopy] <file>...
   fq (-h | --help)
   fq --version
 
@@ -29,6 +29,7 @@ struct Args {
     cmd_u: bool,
     cmd_upload: bool,
     flag_config: String,
+    flag_n: bool,
     flag_nocopy: bool,
     flag_version: bool,
 }
@@ -91,9 +92,8 @@ fn upload(args: &Args, config: &Config) {
 
     println!("{}", urls.join("\r\n"));
 
-    if !args.flag_nocopy {
-        ClipboardProvider::new()
-            .and_then(|mut c: ClipboardContext| c.set_contents(urls.join(" ")))
-            .ok();
+    if !args.flag_nocopy && !args.flag_n {
+        let _ = ClipboardProvider::new()
+            .and_then(|mut c: ClipboardContext| c.set_contents(urls.join(" ")));
     }
 }
