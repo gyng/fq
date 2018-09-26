@@ -21,9 +21,10 @@ sudo apt-get install xorg-dev
 ```
 fq --help
 fq upload cat.jpg
+fq upload --config=config.toml cat.jpg
 ```
 
-fq will copy the URL to your clipboard.
+fq will copy the URL to your clipboard. By default it uses `./config.toml` for configuration.
 
 ### Windows integration
 
