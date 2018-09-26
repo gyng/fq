@@ -28,6 +28,8 @@ fq will copy the URL to your clipboard. By default it uses `./config.toml` for c
 
 ### Windows integration
 
+![Windows shell integration](integrate/win/win.png)
+
 #### Add
 
 1. Download fq somewhere, and create a config file (see [test_config.toml](test/fixtures/test_config.toml))
