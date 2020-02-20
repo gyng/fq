@@ -87,6 +87,8 @@ fn upload(args: &Args, config: &Config) {
 
         if res.status() == 200 {
             urls.push(res.url().to_string());
+        } else {
+            panic!("failed to send: {:?}", res);
         }
     }
 
