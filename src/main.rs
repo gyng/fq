@@ -53,7 +53,8 @@ fn main() -> Result<(), std::io::Error> {
         .unwrap_or_else(|e| e.exit());
 
     // TODO: glob, multiple files
-    let config_text = fs::read_to_string(&args.flag_config)?;
+    let config_text = fs::read_to_string(&args.flag_config)
+        .expect(&format!("failed to load config {:?}", &args.flag_config));
     let config: Config = toml::from_str(&config_text).expect("failed to read config");
 
     if args.cmd_a || args.cmd_add || args.cmd_u || args.cmd_upload {
