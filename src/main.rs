@@ -3,6 +3,7 @@ use clipboard::ClipboardProvider;
 use docopt::Docopt;
 use serde_derive::Deserialize;
 use std::fs;
+use std::path::Path;
 
 const VERSION: &'static str = "0.0.1";
 
@@ -72,8 +73,14 @@ fn upload(args: &Args, config: &Config) {
     let client = reqwest::Client::new();
     let mut urls: Vec<String> = Vec::new();
 
-    for ref path in &args.arg_file {
-        // TODO: Check for filesize limit, whether file is a file and not a directory
+    for ref pathstr in &args.arg_file {
+        let path = Path::new(&pathstr);
+        if !path.is_file() {
+            panic!("{:?} is not a file", path);
+        }
+
+        // TODO: Check for filesize limit
+        // TODO: Handle directory upload (zip?)
         let form = reqwest::multipart::Form::new()
             .text("password", config.service.password.clone())
             .file("file", &path)
